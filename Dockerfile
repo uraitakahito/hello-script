@@ -4,10 +4,7 @@ FROM debian:bookworm-20240612
 ARG user_name=developer
 ARG user_id
 ARG group_id
-# The WORKDIR instruction can resolve environment variables previously set using ENV.
-# You can only use environment variables explicitly set in the Dockerfile.
-# https://docs.docker.com/engine/reference/builder/#/workdir
-ARG home=/home/${user_name}
+ARG dotfiles_repository="https://github.com/uraitakahito/dotfiles.git"
 
 RUN apt-get update -qq && \
   apt-get upgrade -y -qq && \
@@ -50,6 +47,12 @@ RUN cd /usr/src && \
     /usr/src/features/src/common-utils/install.sh
 USER ${user_name}
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+#
+# dotfiles
+#
+RUN cd /home/${user_name} && \
+  git clone --depth 1 ${dotfiles_repository} && \
+  dotfiles/install.sh
 
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["tail", "-F", "/dev/null"]
