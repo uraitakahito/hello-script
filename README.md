@@ -1,5 +1,3 @@
-[snippets](../../wiki/snippets)
-
 ![MacOS](https://img.shields.io/badge/sonoma_14.2.1-support-success.svg?style=for-the-badge&logo=macOS)
 ![Windows](https://img.shields.io/badge/windows-nosupport-critical.svg?style=for-the-badge&logo=windows)
 
@@ -50,3 +48,7 @@ And run docker containers with volume:
 % docker exec -it $PROJECT-container zsh
 % ln -fs /zsh-volume/.zsh_history ~/.zsh_history
 ```
+
+## Memo
+
+[snippets](../../wiki/snippets)
