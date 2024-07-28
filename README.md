@@ -1,11 +1,7 @@
-[snippets](../../wiki/snippets)
-
 ![MacOS](https://img.shields.io/badge/sonoma_14.2.1-support-success.svg?style=for-the-badge&logo=macOS)
 ![Windows](https://img.shields.io/badge/windows-nosupport-critical.svg?style=for-the-badge&logo=windows)
 
-## Attach to a running container
-
-- Run the Docker Desktop application to start Docker.
+## How to start up
 
 Build the image:
 
@@ -20,19 +16,27 @@ Run docker containers:
 % docker container run -it --rm --init --mount type=bind,src=`pwd`,dst=/app --name $PROJECT-container $PROJECT-image /bin/zsh
 ```
 
+## Attach to a running container
+
+```console
+% PROJECT=$(basename `pwd`)
+% docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g`
+% docker container run -it --rm --init --mount type=bind,src=`pwd`,dst=/app --name $PROJECT-container $PROJECT-image /bin/zsh
+```
+
 Select **[Dev Containers: Attach to Running Container](https://code.visualstudio.com/docs/devcontainers/attach-container#_attach-to-a-docker-container)** through the **Command Palette (Shift + command + P)**
 
 Finally, Open the `/app`.
 
-### Tips
+## Tips
 
-#### Running a command and then killing it
+### Running a command and then killing it
 
 ```console
 % docker container run -it --rm --init --name $PROJECT-container $PROJECT-image ls /
 ```
 
-#### How to save zsh history
+### How to save zsh history
 
 To save history, create volume:
 
@@ -50,3 +54,7 @@ And run docker containers with volume:
 % docker exec -it $PROJECT-container zsh
 % ln -fs /zsh-volume/.zsh_history ~/.zsh_history
 ```
+
+## Memo
+
+[snippets](../../wiki/snippets)
