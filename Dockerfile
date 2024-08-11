@@ -9,19 +9,14 @@ ARG dotfiles_repository="https://github.com/uraitakahito/dotfiles.git"
 # Avoid warnings by switching to noninteractive for the build process
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update -qq && \
-  apt-get install -y -qq --no-install-recommends \
-    ca-certificates \
-    git && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/*
-
 #
 # Install packages
 #
 RUN apt-get update -qq && \
   apt-get install -y -qq --no-install-recommends \
     # Basic
+    ca-certificates \
+    git \
     iputils-ping \
     # Editor
     vim \
