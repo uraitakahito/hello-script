@@ -10,7 +10,7 @@ PROJECT=$(basename `pwd`)
 ```
 
 ```sh
-docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g` -f Dockerfile.development
+docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g`
 ```
 
 Run docker containers:
