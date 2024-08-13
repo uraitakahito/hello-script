@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eo pipefail
+set -euo pipefail
 shopt -s nullglob
 
 # check to see if this file is being run or sourced from another script
