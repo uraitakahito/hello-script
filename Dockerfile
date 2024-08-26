@@ -5,7 +5,7 @@ ARG user_name=developer
 ARG user_id
 ARG group_id
 ARG dotfiles_repository="https://github.com/uraitakahito/dotfiles.git"
-ARG features="https://github.com/uraitakahito/features.git"
+ARG features_repository="https://github.com/uraitakahito/features.git"
 
 # Avoid warnings by switching to noninteractive for the build process
 ENV DEBIAN_FRONTEND=noninteractive
@@ -57,7 +57,7 @@ RUN git config --system --add safe.directory /app
 # https://github.com/devcontainers/features/blob/main/src/common-utils/README.md
 #
 RUN cd /usr/src && \
-  git clone --depth 1 ${features} && \
+  git clone --depth 1 ${features_repository} && \
   USERNAME=${user_name} \
   USERUID=${user_id} \
   USERGID=${group_id} \
