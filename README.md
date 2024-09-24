@@ -3,7 +3,7 @@
 
 ## How to start up
 
-Build the image:
+Build your dockage image:
 
 ```sh
 PROJECT=$(basename `pwd`) && docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g`
@@ -15,31 +15,18 @@ Run docker containers:
 docker container run -it --rm --init --mount type=bind,src=`pwd`,dst=/app --name $PROJECT-container $PROJECT-image /bin/zsh
 ```
 
+Run the following commands inside the Docker containers. You can use the Integrated Terminal **(⌃`)** directly in VS Code.
+
+```sh
+./step_by_step.sh
+```
+
 ## Attach to a running container
 
-```sh
-PROJECT=$(basename `pwd`)
-```
-
-```sh
-docker image build -t $PROJECT-image . --build-arg user_id=`id -u` --build-arg group_id=`id -g`
-```
-
-```sh
-docker container run -it --rm --init --mount type=bind,src=`pwd`,dst=/app --name $PROJECT-container $PROJECT-image /bin/zsh
-```
-
-Select **[Dev Containers: Attach to Running Container](https://code.visualstudio.com/docs/devcontainers/attach-container#_attach-to-a-docker-container)** through the **Command Palette (Shift + command + P)**
-
-Finally, Open the `/app`.
+1. Select `Dev Containers: Attach to Running Container` through the `Command Palette (Shift + command + P)` ([code.visualstudio.com](https://code.visualstudio.com/docs/devcontainers/attach-container#_attach-to-a-docker-container))
+2. Open the `/app`
 
 ## Tips
-
-### Running a command and then killing it
-
-```sh
-docker container run -it --rm --init --name $PROJECT-container $PROJECT-image ls /
-```
 
 ### How to save zsh history
 
